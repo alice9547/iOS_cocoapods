@@ -11,7 +11,7 @@ struct MovieData : Codable {
 struct BoxOfficeResult : Codable{
     let dailyBoxOfficeList : [DailyBoxOfficeList]
 }
-struct DailyBoxOfficeList : Codable {       //사용할 API에서의 필드구조명
+struct DailyBoxOfficeList : Codable {      //사용할 API에서의 필드구조명
     let movieNm : String        //영화이름
     let audiAcc : String        //누적 관객수
     let openDt : String         //개봉일
@@ -41,33 +41,52 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return day                          //어제 날짜 반환
     }
     func getData(){
-        if let url = URL(string: movieURL){     //url 옵셔널 바인딩
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url) { [self] (data, response, error) in
-                if error != nil {
-                    print(error!)
-                    return
-                }
-                if let JSONdata = data{             //옵셔널 바인딩
-                    //print(JSONdata, response!)
-                    //let dataString = String(data: JSONdata, encoding: .utf8)
-                    //print(dataString!)
-                    let decoder = JSONDecoder()
-                    do{
-                        let decodedData = try decoder.decode(MovieData.self, from: JSONdata)
-                        //print(decodedData.boxOfficeResult.dailyBoxOfficeList[0].movieMm)
-                        //print(decodedData.boxOfficeResult.dailyBoxOfficeList[0].audiCnt)
+        AF.request(movieURL).responseJSON{ response in
+                switch response.result {
+                case .success(let value):
+                    print(value)
+                    do {
+                        let data = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
+                        let decodedData = try JSONDecoder().decode(MovieData.self, from: data)
                         self.movieData = decodedData
                         DispatchQueue.main.async {
                             self.table.reloadData()
                         }
-                    }catch{
+                    }catch {
                         print(error)
                     }
+                case .failure( _):
+                    break
                 }
             }
-            task.resume()           //일시중단 됐을 경우 다시 시작하는 메서드
-        }
+        
+//        if let url = URL(string: movieURL){     //url 옵셔널 바인딩
+//            let session = URLSession(configuration: .default)
+//            let task = session.dataTask(with: url) { [self] (data, response, error) in
+//                if error != nil {
+//                    print(error!)
+//                    return
+//                }
+//                if let JSONdata = data{             //옵셔널 바인딩
+//                    //print(JSONdata, response!)
+//                    //let dataString = String(data: JSONdata, encoding: .utf8)
+//                    //print(dataString!)
+//                    let decoder = JSONDecoder()
+//                    do{
+//                        let decodedData = try decoder.decode(MovieData.self, from: JSONdata)
+//                        //print(decodedData.boxOfficeResult.dailyBoxOfficeList[0].movieMm)
+//                        //print(decodedData.boxOfficeResult.dailyBoxOfficeList[0].audiCnt)
+//                        self.movieData = decodedData
+//                        DispatchQueue.main.async {
+//                            self.table.reloadData()
+//                        }
+//                    }catch{
+//                        print(error)
+//                    }
+//                }
+//            }
+//            task.resume()           //일시중단 됐을 경우 다시 시작하는 메서드
+//        }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10           //행 10
