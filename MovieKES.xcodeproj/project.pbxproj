@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -36,6 +36,7 @@
 		687906AE2658CFC60040F777 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		687906B02658CFC60040F777 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		687906B72658D45B0040F777 /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
+		68B0637F26C50ED100181F07 /* MovieKES-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MovieKES-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +83,7 @@
 				686B8B4C266F2E4800DD59EC /* DetailViewController.swift */,
 				686B8B4F266F477A00DD59EC /* MapViewController.swift */,
 				685F19FD26709C3900702BE1 /* DrawViewController.swift */,
+				68B0637F26C50ED100181F07 /* MovieKES-Bridging-Header.h */,
 			);
 			path = MovieKES;
 			sourceTree = "<group>";
@@ -100,7 +102,6 @@
 				0C7AD61D5AC3E1ACF23907E4 /* Pods-MovieKES.debug.xcconfig */,
 				2C0955C7E6F9B07312983560 /* Pods-MovieKES.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -137,6 +138,7 @@
 				TargetAttributes = {
 					6879069E2658CFC50040F777 = {
 						CreatedOnToolsVersion = 12.0;
+						LastSwiftMigration = 1200;
 					};
 				};
 			};
@@ -372,6 +374,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MovieKES/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -380,6 +383,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = kr.ac.induk.kmj.MovieKES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MovieKES/MovieKES-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -391,6 +396,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MovieKES/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -399,6 +405,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = kr.ac.induk.kmj.MovieKES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MovieKES/MovieKES-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
