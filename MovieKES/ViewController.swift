@@ -3,7 +3,7 @@
 //  MovieKES
 //
 import UIKit
-
+import Alamofire
 ////////////////////////////////////////////////////////////////////////////////////
 struct MovieData : Codable {
     let boxOfficeResult : BoxOfficeResult
